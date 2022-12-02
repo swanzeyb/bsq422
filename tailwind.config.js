@@ -17,6 +17,11 @@ module.exports = {
       'Raleway': ['Raleway', 'sans-serif'],
       'Jakarta': ['Plus Jakarta Sans', 'sans-serif'],
     },
+    extend: {
+      backgroundImage: (theme) => ({
+        'gradient-primary': `linear-gradient(to right, ${theme('colors.seaGreen')}, ${theme('colors.brightTurquoise')})`,
+      }),
+    },
   },
   plugins: [],
 }

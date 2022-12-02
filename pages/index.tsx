@@ -1,85 +1,96 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Card from '../components/Card'
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Ben Swanzey</title>
-        <link rel="icon" href="/favicon.ico" />
-        <style> @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500&family=Raleway:wght@400;600;700&display=swap'); </style>
-      </Head>
+    <div className="flex min-h-screen flex-row justify-center bg-richBlack text-white font-Raleway">
+      <div className="flex-auto flex-row max-w-screen-2xl px-16 pt-4">
+        <Head>
+          <title>Ben Swanzey</title>
+          <link rel="icon" href="/favicon.ico" />
+          <style> @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500&family=Raleway:wght@400;600;700&display=swap'); </style>
+        </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div>
+          <nav className="flex flex-row justify-between">
+            <Image src="/bs.svg" alt="Ben Swanzey Logo" width={24} height={20} />
+            <ul className="flex flex-row text-sm font-semibold">
+              <li>
+                <a href="/resume.pdf" target="_blank">Resume</a>
+              </li>
+              <li className="ml-8">
+                <a href="mailto:swanzeyb2001@gmail.com" target="_blank">Contact</a>
+              </li>
+            </ul>
+          </nav>
         </div>
-      </main>
 
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
+        <main>
+          {/* Hero Element */}
+          <div className="text-center mt-24 mb-40"> 
+            <h1 className="text-5xl font-bold mb-3">Fullstack Engineering Student</h1>
+            <h4 className="font-Jakarta text-base tracking-wide">Student of Computer Science at Washington State University, Pullman WA.</h4>
+            <div className="flex flex-col items-center mt-8">
+              <Image src="/thumbnail.png" alt="Photo of Ben Swanzey" width={173} height={173} />
+            </div>
+          </div>
+
+          {/* Experience Section */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-2">Experience</h2>
+            <div className="w-36 h-[3px] bg-gradient-primary mb-8"></div>
+            <Card
+              imgSrc="/cegn.png"
+              imgAlt="Center of Excellence for Green Nanotechnologies (CEGN) Website Preview Thumbnail"
+              position="CONTRACTOR"
+              title="UCLA CEGN Website"
+              desc="A NextJS and Headless Wordpress Jamstack website."
+              link="https://www.figma.com/proto/wcTWSKCUMKObrA4IWt3gIQ/CEGN-For-Portfolio?page-id=0%3A1&node-id=2%3A2&viewport=923%2C25%2C0.15&scaling=scale-down"
+            />
+            <Card
+              imgSrc="/cqse.png"
+              imgAlt="Center for Quantum Science and Engineering (CQSE) Website Preview Thumbnail"
+              position="CONTRACTOR"
+              title="UCLA CQSE Website"
+              desc="A responsive static website, made for ease of extensibility."
+              link="https://www.cqse.ucla.edu/"
+            />
+          </div>
+
+          {/* Get In Touch */}
+          <div className="mt-24 mb-72">
+          <div className="w-36 h-[3px] bg-gradient-primary mb-8"></div>
+            <p className="text-sm tracking-widest mb-4">GET IN TOUCH</p>
+            <h1 className="text-3xl tracking-wide mb-4">Want to work together or have any questions?</h1>
+            <span className="text-seaGreen text-2xl font-Jakarta">
+              <a href="mailto:swanzeyb2001@gmail.com" target="_blank">
+                swanzeyb2001@gmail.com {' '}
+                <Image className="inline" src="/share-outline.svg" alt="See CEGN's Website" width={18} height={18} />
+              </a>
+            </span>
+          </div>
+        </main>
+
+        <footer>
+          <div className="w-36 h-[3px] bg-gradient-primary mb-4"></div>
+          <nav>
+            <ul className="mb-4 flex flex-row text-sm font-semibold">
+              <li className="mr-4">
+                <a href="https://github.com/swanzeyb/bsq422" target="_blank">This Site On Github</a>
+              </li>
+              <li className="mr-4">
+                <a href="/resume.pdf" target="_blank">Resume</a>
+              </li>
+              <li className="mr-4">
+                <a href="mailto:swanzeyb2001@gmail.com" target="_blank">Contact</a>
+              </li>
+            </ul>
+          </nav>
+          <p className="mb-16 text-sm">Made with care by Ben Swanzey</p>
+        </footer>
+      </div>
     </div>
   )
 }
