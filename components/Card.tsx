@@ -12,8 +12,8 @@ type CardProps = {
 
 const Card: FunctionComponent<CardProps> = ({ imgSrc, imgAlt, position, title, desc, link }) => {
   return (
-    <div className="grid lg:grid-cols-11 gap-8 mb-16">
-      <div className="ml-[-3px] col-span-4">
+    <div className="grid md:grid-cols-11 gap-8 mb-16">
+      <div className="ml-[-3px] md:col-span-4 col-span-7">
         <Image src={imgSrc} alt={imgAlt} width={512} height={384} />
       </div>
       <div className="col-span-7">

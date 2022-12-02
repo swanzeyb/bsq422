@@ -6,7 +6,7 @@ import Card from '../components/Card'
 const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-row justify-center bg-richBlack text-white font-Raleway">
-      <div className="flex-auto flex-row max-w-screen-2xl px-16 pt-4">
+      <div className="flex-auto flex-row container md:px-16 px-8 pt-4">
         <Head>
           <title>Ben Swanzey</title>
           <link rel="icon" href="/favicon.ico" />
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
         <div>
           <nav className="flex flex-row justify-between">
-            <Image src="/bs.svg" alt="Ben Swanzey Logo" width={24} height={20} />
+            <Image src="/bs.svg" alt="Ben Swanzey Logo" width={128} height={20} />
             <ul className="flex flex-row text-sm font-semibold">
               <li>
                 <a href="/resume.pdf" target="_blank">Resume</a>
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
         <main>
           {/* Hero Element */}
           <div className="text-center mt-24 mb-40"> 
-            <h1 className="text-5xl font-bold mb-3">Fullstack Engineering Student</h1>
+            <h1 className="text-5xl font-bold mb-3 leading-tight">Fullstack Engineering Student</h1>
             <h4 className="font-Jakarta text-base tracking-wide">Student of Computer Science at Washington State University, Pullman WA.</h4>
             <div className="flex flex-col items-center mt-8">
               <Image src="/thumbnail.png" alt="Photo of Ben Swanzey" width={173} height={173} />
