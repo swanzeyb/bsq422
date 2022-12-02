@@ -18,7 +18,7 @@ const Home: NextPage = () => {
             <Image src="/bs.svg" alt="Ben Swanzey Logo" width={128} height={20} />
             <ul className="flex flex-row text-sm font-semibold">
               <li>
-                <a href="/resume.pdf" target="_blank">Resume</a>
+                <a href="/swanzey_resume.pdf" target="_blank">Resume</a>
               </li>
               <li className="ml-8">
                 <a href="mailto:swanzeyb2001@gmail.com" target="_blank">Contact</a>
