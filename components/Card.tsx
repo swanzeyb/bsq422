@@ -24,7 +24,7 @@ const Card: FunctionComponent<CardProps> = ({ imgSrc, imgAlt, position, title, d
       <div className="col-span-7">
         <p className="text-sm tracking-widest mb-3">{position}</p>
         <h3 className="text-3xl font-semibold mb-3">{title}</h3>
-        <p className="font-Jakarta text-base mb-8">{desc}</p>
+        <p className="font-Jakarta text-base mb-8 max-w-md">{desc}</p>
         <a href={link} target="_blank">
           See Site {' '}
           <Image className="inline" src="/chevron-forward-sharp.svg" alt="See CEGN's Website" width={18} height={18} />
