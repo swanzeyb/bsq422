@@ -14,7 +14,12 @@ const Card: FunctionComponent<CardProps> = ({ imgSrc, imgAlt, position, title, d
   return (
     <div className="grid md:grid-cols-11 gap-8 mb-16">
       <div className="ml-[-3px] md:col-span-4 col-span-7">
-        <Image src={imgSrc} alt={imgAlt} width={512} height={384} />
+        <Image
+          src={imgSrc} alt={imgAlt}
+          width={512} height={384}
+          placeholder="blur"
+          blurDataURL={imgSrc}
+        />
       </div>
       <div className="col-span-7">
         <p className="text-sm tracking-widest mb-3">{position}</p>
