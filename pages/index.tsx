@@ -48,6 +48,7 @@ const Home: NextPage = () => {
               title="UCLA CEGN Website"
               desc="A NextJS and Headless Wordpress Jamstack website."
               link="https://www.figma.com/proto/wcTWSKCUMKObrA4IWt3gIQ/CEGN-For-Portfolio?page-id=0%3A1&node-id=2%3A2&viewport=923%2C25%2C0.15&scaling=scale-down"
+              type="Site"
             />
             <Card
               imgSrc="/cqse.png"
@@ -56,6 +57,7 @@ const Home: NextPage = () => {
               title="UCLA CQSE Website"
               desc="A responsive static website, made for ease of extensibility."
               link="https://www.cqse.ucla.edu/"
+              type="Site"
             />
           </div>
 
@@ -70,6 +72,7 @@ const Home: NextPage = () => {
               title="Work Schedule Utility App"
               desc="A React Native app that converts a photo of the users work schedule to entries in their Google Calendar."
               link="https://github.com/swanzeyb/schedule-app-rn#readme"
+              type="App"
             />
           </div>
 
