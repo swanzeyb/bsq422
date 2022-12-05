@@ -59,6 +59,20 @@ const Home: NextPage = () => {
             />
           </div>
 
+          {/* Projects Section */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-2">Projects</h2>
+            <div className="w-36 h-[3px] bg-gradient-primary mb-8"></div>
+            <Card
+              imgSrc="/schedule_app.png"
+              imgAlt="Thumbnail of a React Native app to convert pictures of a users work schedule to entries in their Google Calendar"
+              position="SELF MOTIVATED"
+              title="Work Schedule Utility App"
+              desc="A React Native app that converts a photo of the users work schedule to entries in their Google Calendar."
+              link="https://github.com/swanzeyb/schedule-app-rn#readme"
+            />
+          </div>
+
           {/* Get In Touch */}
           <div className="mt-24 mb-72">
           <div className="w-36 h-[3px] bg-gradient-primary mb-8"></div>
