@@ -21,6 +21,9 @@ const Home: NextPage = () => {
                 <a href="/swanzey_resume.pdf" target="_blank">Resume</a>
               </li>
               <li className="ml-8">
+                <a href="https://www.linkedin.com/in/benrswanzey/" target="_blank">LinkedIn</a>
+              </li>
+              <li className="ml-8">
                 <a href="mailto:swanzeyb2001@gmail.com" target="_blank">Contact</a>
               </li>
             </ul>
