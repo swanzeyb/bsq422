@@ -9,9 +9,14 @@ type CardProps = {
   desc: string,
   link: string,
   type: string,
+  priority?: boolean,
 }
 
-const Card: FunctionComponent<CardProps> = ({ imgSrc, imgAlt, position, title, desc, link, type }) => {
+const Card: FunctionComponent<CardProps> = ({
+  imgSrc, imgAlt,
+  position, title, desc, link, type,
+  priority = false,
+}) => {
   return (
     <div className="grid md:grid-cols-11 gap-8 mb-16">
       <div className="ml-[-3px] md:col-span-4 col-span-7">
@@ -20,6 +25,7 @@ const Card: FunctionComponent<CardProps> = ({ imgSrc, imgAlt, position, title, d
           width={512} height={384}
           placeholder="blur"
           blurDataURL={imgSrc}
+          priority={priority}
         />
       </div>
       <div className="col-span-7">
