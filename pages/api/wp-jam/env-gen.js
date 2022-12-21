@@ -4,7 +4,7 @@ import { uniqueNamesGenerator, adjectives, languages, colors } from 'unique-name
 import axios from 'axios'
 import path from 'path'
 
-const ENV_SRC = `https://gist.githubusercontent.com/swanzeyb/9ac868f5cacdd46371d196161051028f/raw/1e8d8bdd5680c54b577ece93a71f0979d8d0cfeb/.env.template`
+const ENV_SRC = `https://gist.github.com/swanzeyb/9ac868f5cacdd46371d196161051028f/raw/.env.template`
 
 function usernameGen() {
   const name = uniqueNamesGenerator({
