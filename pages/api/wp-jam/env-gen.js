@@ -2,6 +2,7 @@ import Handlebars from 'handlebars'
 import passwordGenerator from 'generate-password'
 import { uniqueNamesGenerator, adjectives, languages, colors } from 'unique-names-generator'
 import axios from 'axios'
+import path from 'path'
 
 const ENV_SRC = `https://gist.githubusercontent.com/swanzeyb/9ac868f5cacdd46371d196161051028f/raw/1e8d8bdd5680c54b577ece93a71f0979d8d0cfeb/.env.template`
 
@@ -72,9 +73,9 @@ async function genEnvValues(mount, domain, subdomains, email) {
     puid:         1000,
     pgid:         1000,
     tz:          'America/Los_Angeles',
-    proxyDir:    `${mount}/proxy`,
-    databaseDir: `${mount}/database`,
-    wpDir:       `${mount}/wp`,
+    proxyDir:     path.join(mount, '/proxy'),
+    databaseDir:  path.join(mount, '/database'),
+    wpDir:        path.join(mount, '/wordpress'),
     email,
     mysqlDatabase,
     mysqlUsername,
