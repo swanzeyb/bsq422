@@ -71,7 +71,6 @@ export default async function handler(
         eventId: event.id as string,
       })
     }
-
     console.log(events.length, 'events found.')
 
     await Promise.all(events.map(async (event) => {
