@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse<string>
 ) {
   try {
-    res.status(200).send(JSON.stringify(req?.query, null, 2)))
+    res.status(200).send(JSON.stringify(req?.query, null, 2))
   } catch (e) {
     res.status(400).send('Bad Request')
   }
