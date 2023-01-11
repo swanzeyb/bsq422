@@ -21,6 +21,8 @@ interface Environment {
   subdomains: string,
   appKeys: string,
   jwtSecret: string,
+  adminJwtSecret: string,
+  apiTokenSalt: string,
 }
 
 interface CurrEnvironment {
@@ -44,6 +46,8 @@ async function genEnvironment({ mount, domain, subdomains, email }: CurrEnvironm
 
   const appKeys = [generateKey(), generateKey()].join(',')
   const jwtSecret = generateKey()
+  const adminJwtSecret = generateKey()
+  const apiTokenSalt = generateKey()
 
   return {
     puid:         1000,
@@ -61,6 +65,8 @@ async function genEnvironment({ mount, domain, subdomains, email }: CurrEnvironm
     subdomains,
     appKeys,
     jwtSecret,
+    adminJwtSecret,
+    apiTokenSalt,
   }
 }
 
