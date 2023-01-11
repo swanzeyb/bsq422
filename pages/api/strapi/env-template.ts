@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars'
 import axios from 'axios'
 import path from 'path'
-import { generateLogin, generateKeys } from '../utils'
+import { generateLogin, generateKey } from '../utils'
 
 const ENV_SRC = `https://gist.github.com/swanzeyb/3587843c25509913247f9da6d36bfb48/raw/.env.template`
 
@@ -20,6 +20,7 @@ interface Environment {
   domain: string,
   subdomains: string,
   appKeys: string,
+  jwtSecret: string,
 }
 
 interface CurrEnvironment {
@@ -41,7 +42,8 @@ async function genEnvironment({ mount, domain, subdomains, email }: CurrEnvironm
     password: mysqlPassword,
   } = generateLogin()
 
-  const appKeys = generateKeys()
+  const appKeys = [generateKey(), generateKey()].join(',')
+  const jwtSecret = generateKey()
 
   return {
     puid:         1000,
@@ -58,6 +60,7 @@ async function genEnvironment({ mount, domain, subdomains, email }: CurrEnvironm
     domain,
     subdomains,
     appKeys,
+    jwtSecret,
   }
 }
 

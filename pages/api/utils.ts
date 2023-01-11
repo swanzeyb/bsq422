@@ -25,7 +25,6 @@ export function generateLogin() {
   }
 }
 
-export function generateKeys() {
-  const key = () => randomBytes(128).toString('hex')
-  return [key(), key()].join(',')
+export function generateKey() {
+  return randomBytes(128).toString('hex')
 }
