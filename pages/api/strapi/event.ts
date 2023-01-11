@@ -14,6 +14,7 @@ assert(process.env.GOOGLE_CREDENTIALS, 'No Google credentials found')
 assert(process.env.CALENDAR_ID, 'No calendar ID found')
 assert(process.env.API_URL, 'No Strapi API URL found')
 assert(process.env.API_KEY, 'No Strapi API key found')
+assert(process.env.SYNC_AMT, 'No sync amount found')
 
 const auth = new google.auth.GoogleAuth({
   credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS as string),
@@ -44,7 +45,7 @@ export default async function handler(
     const now = dayjs().utc().format()
     const agenda = await calendar.events.list({
       calendarId: process.env.CALENDAR_ID,
-      maxResults: 50,
+      maxResults: Number(process.env.SYNC_AMT),
       orderBy: 'startTime',
       showDeleted: false,
       showHiddenInvitations: false,
@@ -71,18 +72,23 @@ export default async function handler(
       })
     }
 
-    for (const event of events) {
-      await axios({
-        method: 'post',
-        url: process.env.API_URL,
-        headers: {
-          Authorization: `Bearer ${process.env.API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        data: { data: { ...event } },
-        validateStatus: () => true,
-      })
-    }
+    console.log(events.length, 'events found.')
+
+    await Promise.all(events.map(async (event) => {
+      try {
+        await axios({
+          method: 'post',
+          url: process.env.API_URL,
+          headers: {
+            Authorization: `Bearer ${process.env.API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          data: { data: { ...event } },
+          validateStatus: () => true,
+        })
+      } catch (e) {
+      }
+    }))
     
     res.status(200).send('OK')
   } catch (e) {
