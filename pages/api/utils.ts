@@ -1,5 +1,6 @@
 import passwordGenerator from 'generate-password'
 import { uniqueNamesGenerator, adjectives, languages, colors } from 'unique-names-generator'
+import { randomBytes } from 'crypto'
 
 export function usernameGen() {
   const name = uniqueNamesGenerator({
@@ -22,4 +23,8 @@ export function generateLogin() {
     username: usernameGen(),
     password: passwordGen(),
   }
+}
+
+export function generateKey() {
+  return randomBytes(256).toString('base64')
 }
