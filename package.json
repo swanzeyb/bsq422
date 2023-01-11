@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "@vercel/analytics": "^0.1.5",
+    "dayjs": "^1.11.7",
+    "googleapis": "^110.0.0",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -16,7 +18,7 @@
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "^10.4.12",
-    "axios": "^1.1.3",
+    "axios": "^1.2.2",
     "cors": "^2.8.5",
     "generate-password": "^1.7.0",
     "handlebars": "^4.7.7",
