@@ -4,9 +4,11 @@ import axios from 'axios'
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import isBetween from 'dayjs/plugin/isBetween'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
 
 dayjs.extend(timezone)
 dayjs.extend(isBetween)
+dayjs.extend(advancedFormat)
 dayjs.tz.setDefault('America/Los_Angeles')
 
 const { BLOSSOM_API_KEY, BLOSSOM_API_URL } = process.env
@@ -34,7 +36,7 @@ export default async function handler(
     })
     .then(res => res.data.data)
 
-    const now = dayjs('2023-01-16 12:00:00')
+    const now = dayjs()
 
     let currEvent = null
     for (const event of today) {
@@ -46,7 +48,10 @@ export default async function handler(
         .set('minute', Number(event.attributes.End.slice(6, -4)))
 
       if (now.isBetween(start, end, 'minute', '[)')) {
-        currEvent = event
+        currEvent = {
+          subject: event.attributes.Title,
+          description: event.attributes.Description,
+        }
         break
       }
     }
@@ -83,26 +88,27 @@ export default async function handler(
 
     const allTasks = [...prevTasks, ...currTasks]
 
-    console.log(prevTasks)
-
-    console.log(currTasks)
-
     // Finished tasks
     const finished = allTasks.reduce((done, task) => {
       return task.attributes.Done ? done + 1 : done
     }, 0)
     const remaining = allTasks.length - finished
 
+    // Formatted tasks
     const tasks = [
       ...prevTasks.reduce((acc: any, task: { attributes: { Done: any } }) => (
         task.attributes.Done ? acc : [...acc, task]
       ), []),
       ...currTasks,
-    ]
+    ].map(task => ({
+      subject: task.attributes.Title,
+      due: dayjs(task.attributes.Due).format('ddd Do'),
+      done: task.attributes.Done,
+    }))
 
     const data = JSON.stringify({
       currEvent,
-      // tasks,
+      tasks,
       finished,
       remaining,
     })
