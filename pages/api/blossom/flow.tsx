@@ -104,6 +104,7 @@ export default async function handler(
       subject: task.attributes.Title,
       due: dayjs(task.attributes.Due).format('ddd Do'),
       done: task.attributes.Done,
+      id: task.id,
     }))
 
     const data = JSON.stringify({
