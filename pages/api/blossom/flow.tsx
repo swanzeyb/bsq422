@@ -16,7 +16,7 @@ const { BLOSSOM_API_KEY, BLOSSOM_API_URL } = process.env
 assert(BLOSSOM_API_KEY, 'BLOSSOM_API_KEY is not defined')
 assert(BLOSSOM_API_URL, 'BLOSSOM_API_URL is not defined')
 
-export default async function handler(
+async function get(
   req: NextApiRequest,
   res: NextApiResponse<string>,
 ) {
@@ -117,5 +117,45 @@ export default async function handler(
     return res.status(200).send(data)
   } catch (e) {
     res.status(400).send('Bad Request')
+  }
+}
+
+async function post(
+  req: NextApiRequest,
+  res: NextApiResponse<string>,
+) {
+  try {
+    const { id, done } = req.body
+
+    await axios({
+      method: 'PUT',
+      url: `${BLOSSOM_API_URL}tasks/${id}`,
+      headers: {
+        Authorization: `Bearer ${BLOSSOM_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      data: {
+        data: {
+          Done: done
+        },
+      },
+    })
+
+    await get(req, res)
+  } catch (e) {
+    res.status(400).send('Bad Request')
+  }
+}
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<string>,
+) {
+  if (req.method === 'GET') {
+    await get(req, res)
+  } else if (req.method === 'PUT') {
+    await post(req, res)
+  } else {
+    res.status(405).send('Method Not Allowed')
   }
 }
