@@ -13,7 +13,6 @@ assert(BLOSSOM_API_KEY, 'BLOSSOM_API_KEY is not defined')
 assert(BLOSSOM_API_URL, 'BLOSSOM_API_URL is not defined')
 
 interface Day {
-  isToday: boolean,
   dayNum: string,
   dayName: string,
   events: {
@@ -41,8 +40,6 @@ export default async function handler(
       },
     }).then(res => res.data.data)
 
-    const now = dayjs()
-
     const index: { [key: string]: Day } = {}
     for (const event of events) {
       const date = dayjs(event.attributes.Date)
@@ -57,7 +54,6 @@ export default async function handler(
         index[event.attributes.Date].events.push(curr)
       } else {
         index[event.attributes.Date] = {
-          isToday: date.isSame(now, 'day'),
           dayNum: date.format('D'),
           dayName: date.format('ddd'),
           events: [curr],
