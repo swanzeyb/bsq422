@@ -2,14 +2,17 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import assert from 'node:assert'
 import axios from 'axios'
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import isBetween from 'dayjs/plugin/isBetween'
 import advancedFormat from 'dayjs/plugin/advancedFormat'
 
+dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(isBetween)
 dayjs.extend(advancedFormat)
-dayjs.tz.setDefault('America/Los_Angeles')
+const tz = 'America/Los_Angeles'
+dayjs.tz.setDefault(tz)
 
 const { BLOSSOM_API_KEY, BLOSSOM_API_URL } = process.env
 
@@ -36,7 +39,7 @@ async function get(
     })
     .then(res => res.data.data)
 
-    const now = dayjs()
+    const now = dayjs.tz(dayjs(), tz)
 
     let currEvent = null
     for (const event of today) {
@@ -120,6 +123,7 @@ async function get(
 
     return res.status(200).send(data)
   } catch (e) {
+    console.log(e)
     res.status(400).send('Bad Request')
   }
 }
