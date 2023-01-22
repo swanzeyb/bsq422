@@ -3,11 +3,13 @@ import assert from 'node:assert'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
+import weekday from 'dayjs/plugin/weekday'
 import timezone from 'dayjs/plugin/timezone'
 import isBetween from 'dayjs/plugin/isBetween'
 import advancedFormat from 'dayjs/plugin/advancedFormat'
 
 dayjs.extend(utc)
+dayjs.extend(weekday)
 dayjs.extend(timezone)
 dayjs.extend(isBetween)
 dayjs.extend(advancedFormat)
@@ -59,9 +61,9 @@ async function get(
       }
     }
 
-    console.log('Now', now.format('YYYY-MM-DD HH:mm:ss'))
-    console.log('Start of week', now.startOf('week').format('YYYY-MM-DD'))
-    console.log('End of week', now.endOf('week').add(2, 'days').format('YYYY-MM-DD'))
+    // console.log('Now', now.format('YYYY-MM-DD HH:mm:ss'))
+    // console.log('Start of week', now.startOf('week').add(1, 'days').format('YYYY-MM-DD'))
+    // console.log('End of week', now.endOf('week').add(2, 'days').format('YYYY-MM-DD'))
 
     // This week tasks
     const currTasks = await axios({
@@ -85,7 +87,7 @@ async function get(
       url: [
         BLOSSOM_API_URL,
         'tasks?sort=Due:ASC&filters[$and][0][Done][$eq]=false&filters[$and][1][Due][$lte]=',
-        now.startOf('week').format('YYYY-MM-DD'),
+        now.startOf('week').add(1, 'days').format('YYYY-MM-DD'),
       ].join(''),
       headers: {
         Authorization: `Bearer ${BLOSSOM_API_KEY}`,
@@ -123,7 +125,6 @@ async function get(
 
     return res.status(200).send(data)
   } catch (e) {
-    console.log(e)
     res.status(400).send('Bad Request')
   }
 }
