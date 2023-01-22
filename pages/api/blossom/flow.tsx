@@ -56,6 +56,7 @@ async function get(
       }
     }
 
+    console.log('Now', now.format('YYYY-MM-DD HH:mm:ss'))
     console.log('Start of week', now.startOf('week').format('YYYY-MM-DD'))
     console.log('End of week', now.endOf('week').add(2, 'days').format('YYYY-MM-DD'))
 
