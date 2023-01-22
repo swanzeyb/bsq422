@@ -2,10 +2,13 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import assert from 'node:assert'
 import axios from 'axios'
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 
+dayjs.extend(utc)
 dayjs.extend(timezone)
-dayjs.tz.setDefault('America/Los_Angeles')
+const tz = 'America/Los_Angeles'
+dayjs.tz.setDefault(tz)
 
 const { BLOSSOM_API_KEY, BLOSSOM_API_URL } = process.env
 
@@ -27,12 +30,13 @@ export default async function handler(
   res: NextApiResponse<string>,
 ) {
   try {
+    const now = dayjs.tz(dayjs(), tz)
     const events = await axios({
       method: 'GET',
       url: [
         BLOSSOM_API_URL,
-        'events?filters%5B%24and%5D%5B0%5D%5BDate%5D%5B%24gte%5D=',
-        dayjs().format('YYYY-MM-DD'),
+        'events?sort=Date:ASC&filters[$and][0][Date][$gte]=',
+        now.format('YYYY-MM-DD'),
       ].join(''),
       headers: {
         Authorization: `Bearer ${BLOSSOM_API_KEY}`,
