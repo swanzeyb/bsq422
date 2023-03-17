@@ -49,8 +49,8 @@ const Home: NextPage = () => {
               imgAlt="Center of Excellence for Green Nanotechnologies (CEGN) Website Preview Thumbnail"
               position="CONTRACTOR"
               title="UCLA CEGN Website"
-              desc="A NextJS and Headless Wordpress Jamstack website."
-              link="https://www.figma.com/proto/wcTWSKCUMKObrA4IWt3gIQ/CEGN-For-Portfolio?page-id=0%3A1&node-id=2%3A2&viewport=923%2C25%2C0.15&scaling=scale-down"
+              desc="A NextJS and Headless Wordpress website."
+              link="https://cegn.seas.ucla.edu/"
               type="Site"
               priority={true}
             />
